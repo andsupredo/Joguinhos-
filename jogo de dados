@@ -1,0 +1,48 @@
+from random import randint
+
+def cab(string):
+    l1 = len(string)
+    print('-' * l1)
+    print(string)
+    print('-' * l1)
+
+cab('|Jogo de dados|')
+cab('|Você deve jogar dados até alcançar o valor de 24 pontos|')
+cab('|caso você ultrapasse esse valor você perde o jogo|')
+
+total = 0
+
+while True:
+    resp = input('Deseja jogar os dados?\ns/n: ')
+    if resp.upper() == 'S':
+        print('Jogando dados...')
+        dado = randint(1, 6)
+        total += dado
+        print(f'deu {dado}, total {total}')
+        if total > 24:
+            print('Você ultrapassou 24 pontos. Você perdeu!')
+            recomeco = input('Deseja jogar novamente?\ns/n: ')
+            if recomeco.upper() == 'S':
+                total = 0
+                continue
+            else:
+                print('Encerrando o jogo...')
+                break
+        elif total == 24:
+            print('Parabéns, você ganhou!!!')
+            recomeco = input('Deseja jogar novamente?\ns/n: ')
+            if recomeco.upper() == 'S':
+                total = 0
+                continue
+            else:
+                print('Encerrando o jogo...')
+                break
+    elif resp.upper() == 'N':
+        print(f'Você optou por não jogar. Você fez {total} pontos, faltaram {24 - dado} para 24 pontos')
+        print('Encerrando o jogo...')
+        break
+    else:
+        print('Opção inválida, encerrando o jogo...')
+        break
+
+
